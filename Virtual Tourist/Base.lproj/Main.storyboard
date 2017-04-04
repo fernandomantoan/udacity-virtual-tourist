@@ -101,6 +101,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="cPF-Ji-dhs" id="2uA-SH-wsO"/>
+                                    <outlet property="delegate" destination="cPF-Ji-dhs" id="s1i-Yx-2Rz"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

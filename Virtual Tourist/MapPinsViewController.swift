@@ -27,8 +27,8 @@ class MapPinsViewController: UIViewController {
         super.viewDidLoad()
         
         let delegate = UIApplication.shared.delegate as! AppDelegate
-        self.stack = delegate.stack
-        self.pins = fetchPins()
+        stack = delegate.stack
+        pins = fetchPins()
         
         mapView.delegate = self
         
@@ -42,7 +42,6 @@ class MapPinsViewController: UIViewController {
     // MARK: Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "detail") {
-            print("Prepare for Segue")
             let collectionVC = segue.destination as! PhotosCollectionViewController
             collectionVC.selectedPin = self.selectedPin
         }
@@ -56,8 +55,8 @@ class MapPinsViewController: UIViewController {
     }
     
     func createPin(_ location: CLLocationCoordinate2D) -> Pin {
-        let pin: Pin = Pin(latitude: location.latitude, longitude: location.longitude, self.stack!.context)
-        self.stack!.save()
+        let pin: Pin = Pin(latitude: location.latitude, longitude: location.longitude, stack!.context)
+        stack!.save()
         return pin
     }
 
@@ -66,13 +65,11 @@ class MapPinsViewController: UIViewController {
         let fr: NSFetchRequest<NSFetchRequestResult> = Pin.fetchRequest()
         
         do {
-            let results = try self.stack!.context.fetch(fr) as! [Pin]
+            let results = try stack!.context.fetch(fr) as! [Pin]
             pins = results
         } catch let e as NSError {
             print("Error while trying to perform a search: \n\(e)")
         }
-        
-        debugPrint("Number of pins: \(pins.count)")
         
         return pins
     }
@@ -100,13 +97,11 @@ extension MapPinsViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         mapView.deselectAnnotation(view.annotation, animated: false)
-        self.selectedPin = view.annotation as? Pin
-        self.performSegue(withIdentifier: "detail", sender: self)
-        debugPrint("Annotation tapped")
+        selectedPin = view.annotation as? Pin
+        performSegue(withIdentifier: "detail", sender: self)
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        debugPrint("Annotation view desleect")
     }
 
 }
@@ -114,7 +109,6 @@ extension MapPinsViewController: MKMapViewDelegate {
 // MARK: Long Press
 extension MapPinsViewController {
     func longPress(_ gesture: UILongPressGestureRecognizer) {
-        debugPrint("--- longPress")
         if gesture.state != UIGestureRecognizerState.began {
             return
         }

@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Virtual Tourist/FlickrConvenience.swift"
-            timestampString = "512958709.078861"
+            timestampString = "513007625.05752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "getLocationPhotos(pin:latitude:longitude:_:)"
             landmarkType = "7">
          </BreakpointContent>

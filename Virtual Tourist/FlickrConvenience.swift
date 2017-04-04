@@ -22,7 +22,6 @@ extension FlickrClient {
         let bBox = "\(boxLngLeft),\(boxLatLeft),\(boxLngRight),\(boxLatRight)"
         
         let randomNum: UInt32 = arc4random_uniform(10)
-        let randomTime: TimeInterval = TimeInterval(randomNum)
         let randomPage: Int = Int(randomNum)
         
         let parameters = [

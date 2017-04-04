@@ -25,7 +25,6 @@ class FlickrClient: NSObject {
         parametersWithApiKey[FlickrClient.ParameterKeys.ApiKey] = Constants.ApiKey as AnyObject
         
         let request = NSMutableURLRequest(url: flickrURLFromParameters(parametersWithApiKey, withPathExtension: ""))
-        debugPrint("\(request.url)")
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
             func sendError(_ error: String) {
@@ -71,7 +70,7 @@ class FlickrClient: NSObject {
             }
             
             guard (error == nil) else {
-                sendError("There was an error with your request: \(error)")
+                sendError("There was an error with your request: \(String(describing: error))")
                 return
             }
             
